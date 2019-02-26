@@ -1,0 +1,39 @@
+<input type="text" #inputSearch placeholder="Artistas, músicas, álbuns, bandas ...">
+<button (click)="searchArtist(inputSearch.value)">Procurar Artista</button>
+<button (click)="searchAlbum(inputSearch.value)">Procurar Álbum</button>
+<button (click)="searchTrack(inputSearch.value)">Procurar Música</button>
+
+<div *ngIf="artistRes">
+  <div *ngFor="let res of artistRes">
+    <a routerLink="/artist/{{res.id}}/{{res.name}}">
+      <span><b>{{res.name}}</b></span><br>
+    </a>
+
+    <span *ngFor="let genre of res.genres">
+      <span>Gênero:
+        <span *ngIf="genre != ''">
+          {{ genre | titlecase }},
+        </span>
+      </span>
+    </span>
+
+    <span>Popularidade: {{res.popularity}}</span>
+    <hr>
+  </div>
+</div>
+
+<div *ngIf="albumRes">
+  <div *ngFor="let res of albumRes">
+    <a href="/album/{{res.id}}/{{res.name}}">
+      <span><b>{{res.name}}</b></span>
+    </a>
+    <span></span>
+  </div>
+</div>
+
+<div *ngIf="trackRes">
+  <div *ngFor="let res of trackRes">
+    <span><b>{{res.name}}</b></span><br>
+    <span>Duração: {{res.duration_ms / 60000 | number: '1.2-2'}}</span>
+  </div>
+</div>

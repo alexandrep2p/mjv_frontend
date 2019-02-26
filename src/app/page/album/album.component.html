@@ -1,0 +1,7 @@
+<h1>{{name}}</h1>
+<div *ngIf="albumTracksRes">
+  <div *ngFor="let res of albumTracksRes">
+    <span>{{res.track_number}}</span> - 
+    <span>{{res.name}}</span>
+  </div>
+</div>
