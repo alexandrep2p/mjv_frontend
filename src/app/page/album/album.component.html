@@ -2,6 +2,7 @@
 <div *ngIf="albumTracksRes">
   <div *ngFor="let res of albumTracksRes">
     <span>{{res.track_number}}</span> - 
-    <span>{{res.name}}</span>
+    <span>{{res.name}}</span> - 
+    <span>{{res.duration_ms / 60000 | number: '1.2-2'}}</span>
   </div>
 </div>

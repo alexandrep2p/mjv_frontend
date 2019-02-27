@@ -11,7 +11,7 @@ import { SpotifyService } from 'src/app/services/spotify.service';
 export class HomeComponent implements OnInit {
 
   public artistRes;
-  public albumRes; 
+  public albumRes;
   public trackRes;
 
   constructor(
@@ -33,7 +33,7 @@ export class HomeComponent implements OnInit {
   }
 
   searchAlbum(albumName) {
-    this.artistRes=null;
+    this.artistRes = null;
     this.trackRes = null;
     this.spotifyService.searchAlbums(albumName)
       .subscribe(res => {
@@ -44,7 +44,7 @@ export class HomeComponent implements OnInit {
 
   searchTrack(trackName) {
     this.albumRes = null;
-    this.artistRes=null;
+    this.artistRes = null;
     this.spotifyService.searchTracks(trackName)
       .subscribe(res => {
         this.trackRes = res.tracks.items;

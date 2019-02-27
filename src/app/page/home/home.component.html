@@ -1,39 +1,116 @@
-<input type="text" #inputSearch placeholder="Artistas, músicas, álbuns, bandas ...">
-<button (click)="searchArtist(inputSearch.value)">Procurar Artista</button>
-<button (click)="searchAlbum(inputSearch.value)">Procurar Álbum</button>
-<button (click)="searchTrack(inputSearch.value)">Procurar Música</button>
+<div class="searchParams">
+  <span>Digite o que deseja procurar e selecione o tipo de pesquisa</span>
+  <input type="text" #inputSearch placeholder="Artistas, músicas, álbuns, bandas ...">
+  <button class="button" (click)="searchArtist(inputSearch.value)">Artista</button>
+  <button class="button" (click)="searchAlbum(inputSearch.value)">Álbum</button>
+  <button class="button" (click)="searchTrack(inputSearch.value)">Música</button>
+</div>
 
-<div *ngIf="artistRes">
+
+<div *ngIf="artistRes" class="result">
+  <span class="title">Resultados da pesquisa de artistas</span><br>
   <div *ngFor="let res of artistRes">
-    <a routerLink="/artist/{{res.id}}/{{res.name}}">
-      <span><b>{{res.name}}</b></span><br>
-    </a>
-
-    <span *ngFor="let genre of res.genres">
-      <span>Gênero:
-        <span *ngIf="genre != ''">
-          {{ genre | titlecase }},
+    <div class="resultCard">
+      <ng-container *ngIf="res.images.length > 0; then thenTemplate; else elseTemplate"></ng-container>
+      <ng-template #thenTemplate>
+        <div class="imageCard">
+          <img src="{{res.images[0].url}}" alt="Imagem do artista">
+        </div>
+      </ng-template>
+      <ng-template #elseTemplate>
+        <div class="imageCard noImageCard">
+          <i class="fab fa-spotify"></i>
+        </div>
+      </ng-template>
+      <div class="resultInfo">
+        <a routerLink="/artist/{{res.id}}/{{res.name}}">
+          <span><b>{{res.name}}</b></span><br>
+        </a>
+        <span *ngIf="res.popularity >= 80">
+          Hot <i class="populatity fas fa-grin-squint-tears"></i>
         </span>
-      </span>
-    </span>
-
-    <span>Popularidade: {{res.popularity}}</span>
+        <span *ngIf="res.popularity > 60 && res.popularity < 79">
+          Cool <i class="populatity fas fa-grin-alt"></i>
+        </span>
+        <span *ngIf="res.popularity > 30 && res.popularity < 59">
+          Regular <i class="populatity fas fa-smile"></i>
+        </span>
+        <span *ngIf="res.popularity < 30">
+          Undergound <i class="populatity fas fa-meh-blank"></i>
+        </span>
+        <br>
+        <span>Gênero:
+          <span *ngFor="let genre of res.genres">
+            <span>
+              {{ genre | titlecase }},
+            </span>
+          </span>
+        </span><br>
+        <a href="{{res.external_urls.spotify}}"><b>Abrir no Spotify</b></a>
+      </div>
+    </div>
     <hr>
   </div>
 </div>
 
-<div *ngIf="albumRes">
+<div *ngIf="albumRes" class="result">
+  <span class="title">Resultados da pesquisa de álbuns</span><br>
   <div *ngFor="let res of albumRes">
-    <a href="/album/{{res.id}}/{{res.name}}">
-      <span><b>{{res.name}}</b></span>
-    </a>
-    <span></span>
+    <div class="resultCard">
+      <ng-container *ngIf="res.images.length > 0; then thenImage; else elseNoImage"></ng-container>
+      <ng-template #thenImage>
+        <div class="imageCard">
+          <img src="{{res.images[0].url}}" alt="Imagem do artista">
+        </div>
+      </ng-template>
+      <ng-template #elseNoImage>
+        <div class="noImageCard">
+          <i class="fab fa-spotify"></i>
+        </div>
+      </ng-template>
+      <div class="resultInfo">
+        <a href="/album/{{res.id}}/{{res.name}}">
+          <span><b>{{res.name}}</b></span>
+        </a><br>
+        <ng-container *ngIf="res.artists.length > 1; then thenTemplate; else elseTemplate"></ng-container>
+        <ng-template #thenTemplate>
+          <span>Vários artistas</span><br>
+        </ng-template>
+        <ng-template #elseTemplate>
+          <span>{{res.artists[0].name}}</span><br>
+        </ng-template>
+        <a href="{{res.external_urls.spotify}}"><b>Abrir no Spotify</b></a>
+      </div>
+    </div>
+    <hr>
   </div>
 </div>
 
-<div *ngIf="trackRes">
+<div *ngIf="trackRes" class="result">
+  <span class="title">Resultados da pesquisa de músicas</span><br>
   <div *ngFor="let res of trackRes">
-    <span><b>{{res.name}}</b></span><br>
-    <span>Duração: {{res.duration_ms / 60000 | number: '1.2-2'}}</span>
+    <div class="resultCard">
+      <ng-container *ngIf="res.album.images.length > 0; then thenImage; else elseNoImage"></ng-container>
+      <ng-template #thenImage>
+        <div class="imageCard">
+          <img src="{{res.album.images[0].url}}" alt="Imagem do artista">
+        </div>
+      </ng-template>
+      <ng-template #elseNoImage>
+        <div class="noImageCard">
+          <i class="fab fa-spotify"></i>
+        </div>
+      </ng-template>
+      <div class="resultInfo">
+        <span><b>{{res.name}}</b></span><br>
+        <span>{{res.album.name}}</span><br>
+        <span *ngFor="let artist of res.artists">
+          {{artist.name}},
+        </span><br>
+        <span>Duração: {{res.duration_ms / 60000 | number: '1.2-2'}}</span><br>
+        <a href="{{res.external_urls.spotify}}"><b>Abrir no Spotify</b></a>
+      </div>
+    </div>
+    <hr>
   </div>
 </div>
