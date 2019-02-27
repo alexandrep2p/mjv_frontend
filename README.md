@@ -9,14 +9,19 @@ Feito isso, instale o AngularCLI digitando no terminal `npm install -g @angular/
 
 
 ## Preparar token de autenticação
-A API utilizada para acesso aos dados do Spotify precisam de autenticação via token, esse gerado a partir do login com uma conta do serviço de streaming. Para receber o token, entre [nesse link](https://developer.spotify.com/console/get-search-item/?q=tania%20bowra&type=artist&market=&limit=&offset=) e clique em "GET TOKEN" na parte inferior da página, na janela que será exibida clique "REQUEST TOKEN" e aceite a permissão do Spotify. Copie o conteúdo do input ao lado do botão "GET TOKEN" e cole-o em: src/app/services/spotify.service.ts, na linha 8:
-	
+A API utilizada para acesso aos dados do Spotify precisam de autenticação via token, esse gerado a partir do login com uma conta do serviço de streaming. Para receber o token, entre [nesse link](https://developer.spotify.com/console/get-search-item/?q=tania%20bowra&type=artist&market=&limit=&offset=) e clique em "GET TOKEN" na parte inferior da página, na janela que será exibida clique "REQUEST TOKEN" e aceite a permissão do Spotify. Copie o conteúdo do input ao lado do botão "GET TOKEN" e cole-o em: src/app/services/spotify.service.ts, na linha 8 onde há escrito TOKEN entre aspas:
+
 	private  token  =  "TOKEN";
+	
+Ficando dessa maneira:
+
+	private  token  =  "BQApiwlBXzwB5zL13KQcc1VzShy0pkYbz9qTMQXU9r5NZw0ZBARB9PSG9bETkCRexahN8drJkEVoYISnR_BsPN-7MAlk4wuPUy5T4ioiDSoB6cSqhgK558xI73uMNJ7i9vsxvTvt1VrnqvtUshw";
+	
 O token gerado pelo Spotify tem expiração curta, após alguns minutos é necessário gerar um novo token e fazer novamente o processo.
 
 ## Preparar e rodar aplicação
 
-Navegue até o diretório do repositório clonado pelo terminal/CMD e digite `npm install` para carregar as dependências do projeto. Agora digite `ng serve` para rodar a aplicação em um servidor de desenvolvimento. Após a mensagem de compilação bem sucedida abra o navegador e digite `localhost:4200` para acessar a aplicação.
+Navegue até o diretório do repositório clonado pelo terminal/CMD e digite `npm install` para carregar as dependências do projeto. Agora digite `ng serve` para rodar a aplicação em um servidor de desenvolvimento. Após a mensagem de compilação bem sucedida abra o navegador e digite `localhost:4200` para acessar a aplicação. Em sistemas Windows pode acontecer um erro durante a compilação por conta do Sass - Para corrigir isso, digite `npm rebuild node-sass` e tente novamente.
 
 ## O que foi feito ?
 
