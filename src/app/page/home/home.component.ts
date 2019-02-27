@@ -26,7 +26,7 @@ export class HomeComponent implements OnInit {
     this.albumRes = null;
     this.trackRes = null;
     this.spotifyService.searchArtists(artistName)
-      .subscribe(res => {
+      .subscribe((res:any) => {
         this.artistRes = res.artists.items;
         console.log(this.artistRes);
       });
@@ -36,7 +36,7 @@ export class HomeComponent implements OnInit {
     this.artistRes = null;
     this.trackRes = null;
     this.spotifyService.searchAlbums(albumName)
-      .subscribe(res => {
+      .subscribe((res:any) => {
         this.albumRes = res.albums.items;
         console.log(this.albumRes);
       });
@@ -46,7 +46,7 @@ export class HomeComponent implements OnInit {
     this.albumRes = null;
     this.artistRes = null;
     this.spotifyService.searchTracks(trackName)
-      .subscribe(res => {
+      .subscribe((res:any) => {
         this.trackRes = res.tracks.items;
         console.log(this.trackRes);
       });

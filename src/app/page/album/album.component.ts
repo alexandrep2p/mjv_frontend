@@ -26,7 +26,7 @@ export class AlbumComponent implements OnInit {
     });
 
     this.spotifyService.getAlbumTracks(this.id)
-      .subscribe(data => {
+      .subscribe((data:any) => {
         this.albumTracksRes = data.items;
         console.log(this.albumTracksRes)
       });

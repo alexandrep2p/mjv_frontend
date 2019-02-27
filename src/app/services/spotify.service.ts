@@ -5,7 +5,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 export class SpotifyService {
 
-    private token = "BQCcDBdCuMJPkhoT1jtSeX0cJKw4_5bHmR4RhygwQUiTVwopevzTofIFtHiVm1JVDgV-NaAiO9Rx14gKUZhz-km2wMfHXEc9veQriAzXQjn6vRITSjJYHQfy1v7WqDGLAEGuI1dBUUskF10ecGAxWmqrYunUkYPz_89eAQ";
+    private token = "TOKEN";
 
     constructor(private httpClient: HttpClient) { }
 
