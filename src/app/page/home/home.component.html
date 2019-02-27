@@ -1,9 +1,9 @@
 <div class="searchParams">
   <span>Digite o que deseja procurar e selecione o tipo de pesquisa</span>
   <input type="text" #inputSearch placeholder="Artistas, músicas, álbuns, bandas ...">
-  <button class="button" (click)="searchArtist(inputSearch.value)">Artista</button>
-  <button class="button" (click)="searchAlbum(inputSearch.value)">Álbum</button>
-  <button class="button" (click)="searchTrack(inputSearch.value)">Música</button>
+  <button class="button" (click)="searchArtist(inputSearch.value)">ARTISTA</button>
+  <button class="button" (click)="searchAlbum(inputSearch.value)">ÁLBUM</button>
+  <button class="button" (click)="searchTrack(inputSearch.value)">MÚSICA</button>
 </div>
 
 
@@ -29,17 +29,17 @@
         <span *ngIf="res.popularity >= 80">
           Hot <i class="populatity fas fa-grin-squint-tears"></i>
         </span>
-        <span *ngIf="res.popularity > 60 && res.popularity < 79">
+        <span *ngIf="res.popularity >= 60 && res.popularity < 79">
           Cool <i class="populatity fas fa-grin-alt"></i>
         </span>
-        <span *ngIf="res.popularity > 30 && res.popularity < 59">
+        <span *ngIf="res.popularity >= 30 && res.popularity < 59">
           Regular <i class="populatity fas fa-smile"></i>
         </span>
         <span *ngIf="res.popularity < 30">
           Undergound <i class="populatity fas fa-meh-blank"></i>
         </span>
         <br>
-        <span>Gênero:
+        <span *ngIf="res.genres.length > 0">Gênero:
           <span *ngFor="let genre of res.genres">
             <span>
               {{ genre | titlecase }},
@@ -74,7 +74,7 @@
         </a><br>
         <ng-container *ngIf="res.artists.length > 1; then thenTemplate; else elseTemplate"></ng-container>
         <ng-template #thenTemplate>
-          <span>Vários artistas</span><br>
+          <span>Vários Artistas</span><br>
         </ng-template>
         <ng-template #elseTemplate>
           <span>{{res.artists[0].name}}</span><br>
@@ -107,7 +107,8 @@
         <span *ngFor="let artist of res.artists">
           {{artist.name}},
         </span><br>
-        <span>Duração: {{res.duration_ms / 60000 | number: '1.2-2'}}</span><br>
+        <span>Duração: {{res.duration_ms | msToMin}} min</span><br>
+        <!-- <span>Duração: {{res.duration_ms / 60000 | number: '1.2-2'}}min</span><br> -->
         <a href="{{res.external_urls.spotify}}"><b>Abrir no Spotify</b></a>
       </div>
     </div>

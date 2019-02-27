@@ -1,8 +1,16 @@
-<h1>{{name}}</h1>
-<div *ngIf="albumTracksRes">
-  <div *ngFor="let res of albumTracksRes">
-    <span>{{res.track_number}}</span> - 
-    <span>{{res.name}}</span> - 
-    <span>{{res.duration_ms / 60000 | number: '1.2-2'}}</span>
+<div *ngIf="albumTracksRes" class="albumDetails">
+  <h1>{{name}}</h1>
+  <span>{{albumTracksRes.length}} faixas</span><br><br>
+  <div class="trackList" *ngFor="let res of albumTracksRes">
+    <span class="trackName">
+      {{res.name}}
+    </span><br>
+    <span>
+      {{res.duration_ms | msToMin}}min
+    </span>
+    <span class="trackPreview" *ngIf="res.preview_url">
+      <a (click)="playPreview(res.preview_url)">Preview<i class="fas fa-play"></i></a>
+    </span>
+    <hr>
   </div>
 </div>

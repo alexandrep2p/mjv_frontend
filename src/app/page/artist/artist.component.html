@@ -1,8 +1,13 @@
-<h1>{{name}}</h1>
-
-<div *ngIf="artistAlbumsRes">
-  <div *ngFor="let res of artistAlbumsRes">
-    <span>Álbum: {{res.name}}</span>
-    <span>Lançamento: {{res.release_date | date: 'dd/MM/yyyy'}}</span><br>
+<div *ngIf="artistAlbumsRes" class="artistDetail">
+  <h1>{{name}}</h1>
+  <span>Discografia recente</span><br><br>
+  <div *ngFor="let res of artistAlbumsRes" class="artistAlbum">
+    <div class="artistAlbumImage">
+      <img src="{{res.images[0].url}}" alt="Capa do álbum do artista">
+    </div>
+    <div class="artistAlbumInfo">
+      <span>{{res.name}}</span><br>
+      <span>{{res.total_tracks}} faixas</span><br>
+    </div><br>
   </div>
 </div>

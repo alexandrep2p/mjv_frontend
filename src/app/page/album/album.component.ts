@@ -24,13 +24,19 @@ export class AlbumComponent implements OnInit {
       this.id = params.get("id");
       this.name = params.get("name");
     });
-    console.log(this.id)
 
     this.spotifyService.getAlbumTracks(this.id)
       .subscribe(data => {
         this.albumTracksRes = data.items;
         console.log(this.albumTracksRes)
       });
+  }
+
+  playPreview(musicPreview:string){
+    let audio = new Audio();
+    audio.src = musicPreview;
+    audio.load();
+    audio.play();
   }
 
 }

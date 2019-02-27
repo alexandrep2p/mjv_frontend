@@ -7,13 +7,15 @@ import { HomeComponent } from './page/home/home.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ArtistComponent } from './page/artist/artist.component';
 import { AlbumComponent } from './page/album/album.component';
+import { MsToMinPipe } from './pipes/ms-to-min.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     ArtistComponent,
-    AlbumComponent
+    AlbumComponent,
+    MsToMinPipe
   ],
   imports: [
     BrowserModule,

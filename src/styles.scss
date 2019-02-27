@@ -17,9 +17,11 @@ $secondary-light: #6c6a6f;
 body {
   display: contents;
   background-color: $secondary-light;
+  background-size: cover;
   font-family: "Confortaa", Arial, sans-serif;
   color: white;
   font-size: 1.2rem;
+  font-weight: bold;
 }
 
 .header {
@@ -61,6 +63,27 @@ body {
   }
 }
 
+.button {
+  background-color: $primary-dark;
+  border-radius: 17px;
+  color: white;
+  padding: 10px 30px;
+  font-weight: bold;
+  text-decoration: none;
+  width: 80vw;
+  margin-top: 2vh;
+  font-size: 1rem;
+  border-style: none;
+  letter-spacing: 2px;
+}
+.button:hover {
+  background-color: $primary-light;
+}
+.button:active {
+  position: relative;
+  top: 1px;
+}
+
 .result {
   display: flex;
   width: 90vw;
@@ -74,6 +97,7 @@ body {
     display: flex;
     flex-direction: row;
     .resultInfo {
+      align-self: center;
       margin-left: 5vw;
       width: 60vw;
     }
@@ -108,25 +132,50 @@ body {
   }
 }
 
-.button {
+.albumDetails {
+  width: 100vw;
   text-align: center;
-  background-color: $primary-dark;
-  border-radius: 17px;
-  display: unset;
-  color: white;
-  padding: 10px 30px;
-  font-weight: bold;
-  text-decoration: none;
-  width: 80vw;
-  margin-top: 2vh;
-  font-size: 1rem;
+  h1 {
+    font-size: 2.2rem;
+    margin-bottom: 0;
+  }
+  .trackList {
+    margin-bottom: 2vh;
+    .trackName {
+      text-align: center;
+      font-weight: bold;
+    }
+    .trackPreview {
+      color: $primary;
+      i {
+        margin-left: 5px;
+      }
+    }
+  }
 }
-.button:hover {
-  background-color: $primary-light;
-}
-.button:active {
-  position: relative;
-  top: 1px;
+
+.artistDetail {
+  width: 100vw;
+  text-align: center;
+  h1 {
+    font-size: 2.2rem;
+    margin-bottom: 0;
+  }
+  .artistAlbum {
+    display: flex;
+    justify-content: center;
+    .artistAlbumImage {
+      img {
+        width: 30vw;
+      }
+    }
+    .artistAlbumInfo {
+      width: 60vw;
+      align-self: center;
+      margin-left: 5vw;
+      font-weight: bold;
+    }
+  }
 }
 
 @media only screen and (min-width: 768px) {
