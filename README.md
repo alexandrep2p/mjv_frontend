@@ -1,4 +1,4 @@
-# Processo seletivo MJV - Frond Ent
+# Processo seletivo MJV - Frond End
 
 ## Requisitos
 
